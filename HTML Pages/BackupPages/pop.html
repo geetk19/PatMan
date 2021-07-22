@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pop Up</title>
+    <link rel="stylesheet" href="pop.css">
+</head>
+<body>
+    <button onclick="addForm()">Add Patient</button>
+    <div class="add_pat" id="pop_up">
+        <p class="pat_id">Patient Id: <span>A13g7B9</span></p>
+        <form action="" method="post">
+            <input type="text" id="name" autocomplete="off" required>
+            <label for="name" class="name">Name</label><br>
+            <input type="text" id="contact" autocomplete="off" required>
+            <label for="name" class="contact">Contact No.</label><br>
+            <input type="radio" id="male" name="gender">
+            <label for="male">Male</label>
+            <input type="radio" id="female" name="gender">
+            <label for="female">Female</label>
+            <input type="radio" id="other" name="gender">
+            <label for="other">Other</label><br>
+            <textarea type="text" id="issue" autocomplete="off" rows="2" required></textarea>
+            <label for="issue" class="issue">Problem</label><br>
+            <button type="submit">Add</button>
+            <button type="button" onclick="remove()">Cancel</button>
+        </form>
+        <img src="../Assets/user.png" alt="doctor_icon" height="150" width="150">
+    </div>
+</body>
+<script>
+    function addForm() {
+        var form = document.getElementById("pop_up");
+        form.classList.add('disp_block');
+        form.classList.remove('disp_none');
+    }
+    function remove() {
+        var form = document.getElementById("pop_up");
+        form.classList.add('disp_none');
+        form.classList.remove('disp_block');
+    }
+</script>
+</html>

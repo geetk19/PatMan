@@ -1,0 +1,110 @@
+body {
+  height: 60vh;
+  display: flex;
+  /* justify-content: space-around; */
+  flex-direction: column;
+}
+.bd {
+  margin-left: 5%;
+  font-family: "Balsamiq Sans", cursive;
+  /* opacity: 0.5; */
+}
+
+.form {
+  width: 100%;
+  position: relative;
+  height: 70px;
+  margin: 15px;
+}
+
+.form input {
+  width: 20%;
+  height: 100%;
+  padding-top: 23px;
+  border: none;
+  outline: none;
+  font-size: 20px;
+}
+
+.form label {
+  position: absolute;
+  bottom: 0px;
+  left: 0%;
+  width: 20%;
+  height: 100%;
+  pointer-events: none;
+  border-bottom: 1px solid black;
+}
+
+.form label::after {
+  content: "";
+  position: absolute;
+  left: 0px;
+  bottom: -1px;
+  height: 100%;
+  width: 100%;
+  border-bottom: 3px solid #009fdf;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+}
+
+.content-name {
+  position: absolute;
+  bottom: 5px;
+  left: 0px;
+  transition: all 0.3s ease;
+  opacity: 0.65;
+}
+
+.form input:focus + .label-name .content-name,
+.form input:valid + .label-name .content-name {
+  transform: translateY(-90%);
+  font-size: 25px;
+  opacity: 0.9;
+}
+
+.form input:focus + .label-name::after,
+.form input:valid + .label-name::after {
+  transform: translateX(0%);
+}
+
+.btn {
+  font-family: "Balsamiq Sans", cursive;
+  margin: 10px 0px;
+  color: white;
+  background-color: black;
+  padding: 10px;
+  border: grey;
+  border-radius: 5px;
+  font-size: 20px;
+  cursor: pointer;
+}
+.btn:hover {
+  background-color: grey;
+}
+
+/* #home::before{
+    content: "";
+    position: absolute;
+    background: url("../img/reg.jpg");
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+    opacity: 0.89;
+    background-repeat: no-repeat;
+} */
+#home {
+  background: url("../img/reg.jpg") no-repeat center fixed;
+  background-size: cover;
+}
+
+input[type="text"],
+input[type="password"] {
+  background: rgba(0, 0, 0, 0);
+  border: none;
+  outline: none;
+}
+.label-name p {
+  transform: translate(110%, 45%);
+  color: red;
+}

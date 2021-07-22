@@ -1,0 +1,94 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@1,300;1,600&display=swap");
+
+div.add_pat {
+  border: 1.5px solid black;
+  border-radius: 10px;
+  width: 30%;
+  padding: 20px;
+  position: absolute;
+  transition: all 0.5s;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+div.add_pat p.pat_id {
+  float: right;
+  margin: 0;
+  font-size: 1.2rem;
+  font-family: "Josefin Sans", sans-serif;
+  font-weight: 600;
+}
+
+div.add_pat img {
+  position: absolute;
+  top: 25%;
+  left: 65%;
+}
+
+div.add_pat form {
+  margin: 40px 0 0 0;
+}
+
+div.add_pat form input {
+  border: none;
+  border-bottom: 2px solid black;
+  margin-bottom: 30px;
+  outline: none;
+}
+
+div.add_pat form textarea#issue {
+  width: 250px;
+  resize: none;
+  border: none;
+  border-bottom: 2px solid black;
+  outline: none;
+}
+
+div.add_pat form textarea#issue::-webkit-scrollbar {
+  display: none;
+}
+
+div.add_pat form label.name,
+div.add_pat form label.contact,
+div.add_pat form label.issue {
+  position: absolute;
+  left: 20px;
+  transition: all 0.5s;
+}
+
+div.add_pat form input#name:focus ~ label.name,
+div.add_pat form input#name:valid ~ label.name,
+div.add_pat form input#contact:focus ~ label.contact,
+div.add_pat form input#contact:valid ~ label.contact,
+div.add_pat form textarea#issue:focus ~ label.issue,
+div.add_pat form textarea#issue:valid ~ label.issue {
+  transform: translateY(-100%);
+  font-size: 16px;
+  color: rgb(65, 65, 228);
+  transition: all 0.5s;
+}
+
+div.add_pat form input#male:focus ~ label[for="male"],
+div.add_pat form input#female:focus ~ label[for="female"],
+div.add_pat form input#other:focus ~ label[for="other"] {
+  color: rgb(65, 65, 228);
+}
+
+div.add_pat form button {
+  margin: 15px 10px 0 0;
+  padding: 5px;
+  width: 60px;
+  border-radius: 5px;
+  outline: none;
+}
+
+.disp_block {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.disp_none {
+  transform: scale(0);
+  opacity: 0;
+}

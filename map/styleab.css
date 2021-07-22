@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+.about{
+    position: relative;
+    min-height: 100vh;
+    padding: 50px 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+    background: url('./about.png');
+    background-size: cover;
+}
+.video{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.team {
+    position: relative;
+    min-height: 91vh;
+    /* padding: 50px 100px; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    /* background: url('./contact.jpg'); */
+    background-size: cover;
+    margin-bottom: -3%;
+}
+.box img{
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    margin-bottom: 1.4rem;
+}
+.container1{
+    display: flex;
+    flex-direction: row;
+    
+}
+.container1 .box{
+    position: relative;
+    padding: 20px 0;
+    margin: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.foot{
+    background-color: black;
+    color: white;
+    text-align: center;
+}
+.te{
+    font-size: 50px; margin-top: -3%;
+    color: rgb(94, 94, 253);
+}
+#pla{
+    position: absolute;
+    left:26%;
+    top:83%;
+    border: none;
+    outline: none;
+}
+#paus{
+    position: absolute;
+    left:26%;
+    top: 83%;
+     display: none;
+    border: none;
+    outline: none;
+}
+#fullscreen{
+    position: absolute;
+    left:73%;
+    top: 83%;
+    border: none;
+    outline: none;
+}
+
+@media(max-width:991px){
+
+    .container1 {
+        display: flex;
+        flex-direction: column;
+    }
+    .video video{
+        width: 340px !important;
+        height: 340px !important;
+    }
+    .te{
+        margin-top: 10%;
+    }
+    #pla{
+        position: absolute;
+        left:4%;
+        top:69%;
+        border: none;
+        outline: none;
+    }
+    #paus{
+        position: absolute;
+        left:4%;
+        top:69%;
+        border: none;
+        outline: none;
+    }
+    #fullscreen{
+        position: absolute;
+        left:92%;
+        top: 69%;
+        border: none;
+        outline: none;
+    }
+
+}

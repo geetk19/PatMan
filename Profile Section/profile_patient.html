@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Profile</title>
+    <link rel="stylesheet" href="profile_patient.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="jQuery.js">
+    
+</head>
+<body>
+    <header>
+        <nav class="navigation">
+            <span class="logo">PATMAN</span>
+            <ul>
+                <li>
+                    <a href="#">Uzumaki Naruto</a>
+                </li>
+                <li>
+                    <a href="#">About Us</a>
+                </li>
+                <li>
+                    <a href="#">Contact Us</a>
+                </li>
+                <li>
+                    <a href="#">Logout</a>
+                </li>
+            </ul>
+        </nav>
+        </header>
+        <div class="container">
+            <div class="leftbox">
+                <nav>
+                    <a href="#" onclick="tabs(0)" class="tab" active>
+                        <i class="fa fa-user-o" ></i>
+                    </a>
+                    <a href="#" onclick="tabs(1)" class="tab">
+                        <i class="fa fa-info-circle" aria-hidden="true"></i>
+                        
+                    </a>
+                    
+                </nav>
+            </div>
+            <div class="rightbox">
+                <div class="tabShow"><br> <!--class was class="profile tabshow"-->
+                    <h1>Personal Information</h1><br>
+                    <h2>Name</h2>
+                    <input type="text" class="input" ><br><br>
+                    <h2>Patient ID</h2>
+                    <input type="text" class="input" ><br><br>
+                    <h2>Contact Number</h2>
+                    <input type="text" class="input"><br><br>
+                    <h2>Email ID</h2>
+                    <input type="text" class="input"><br><br>
+                    <button class="btn" >Edit <i class="fa fa-pencil" aria-hidden="true"></i></button>
+                </div>
+                <div class="tabShow" style="display:none;"><br>
+                    <h1>Other Details</h1><br>
+                    <h2>Gender</h2>
+                    <input type="text" class="input"><br><br>
+                    <h2>Blood Group</h2>
+                    <input type="text" class="input"><br><br>
+                    <h2>Age</h2>
+                    <input type="text" class="input"><br><br>
+                    <button class="btn" >Edit <i class="fa fa-pencil" aria-hidden="true"></i></button>
+                </div>
+               
+            </div>
+        </div>
+
+        <script src="jQuery.js"></script>
+        <script>
+            const tabBtn= document.querySelectorAll(".tab");
+            const tab= document.querySelectorAll(".tabShow");
+
+            function tabs(panelIndex) {
+                tab.forEach(x=>x.style.display="none");
+                debugger;
+                tab[panelIndex].style.display = "block";
+            }
+            //tabs(0);
+
+        </script>
+        <script>
+            $(".tab").click(function(){
+                $(this).addClass("active").siblings().removeClass("active");
+            })
+         </script>
+
+
+</body>
+</html>

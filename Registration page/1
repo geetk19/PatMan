@@ -1,0 +1,350 @@
+
+<?php
+$showAlert = false;
+$showError = false;
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+    include '../partial/_dbcon.php';
+    $name=$_POST['drname'];
+    $dg=$_POST['designation'];
+    $sp=$_POST['Specialization'];
+    $eid=$_POST['EmailId'];
+    $phno=$_POST['Cont'];
+    $Hname=$_POST['Hospitalname'];
+    $pincode=$_POST['pincode'];
+    $uid=$_POST['username'];
+    $password=$_POST['password'];
+    $cpassword = $_POST['cpassword1'];
+    // $sql="INSERT INTO `dg_reg_page`.`drreg` (`uid`,`password`,`drname`, `designation`, `specailized`, `eid`, `cont`, `hname`, `pincode`, `dt`) VALUES ('$uid','$password','$name', '$dg', '$sp', '$eid', '$phno', '$Hname', '$pincode', current_timestamp());";
+$num=0;
+    // Check whether this username exists
+    $existSql = "SELECT * FROM `dg_reg_page`.`drreg` WHERE uide = '$uid';";
+    if(!$existSql){
+        $num = 1;
+    }
+    if($num =0){
+        // $exists = true;
+        $showError = "Username Already Exists";
+    }
+    else{
+        // $exists = false; 
+        if(($password == $cpassword)){
+            $hash = password_hash($password, PASSWORD_DEFAULT);
+            $sql = "INSERT INTO `dg_reg_page`.`drreg` (`uide`,`password`,`drname`, `designation`, `specailized`, `eid`, `cont`, `hname`, `pincode`, `dt`) VALUES ('$uid','$password','$name', '$dg', '$sp', '$eid', '$phno', '$Hname', '$pincode', current_timestamp());";
+            $result = mysqli_query($con, $sql);
+            if ($result){
+                $showAlert = true;
+            }
+        }
+        else{
+            $showError = "Passwords do not match";
+        }
+    }
+}
+
+
+
+?>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration page</title>
+    <link rel="stylesheet" href="./regstyle.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+<?php
+    if($showAlert){
+    echo ' <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Success!</strong> Your account is now created and you can login
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div> ';
+    }
+    if($showError){
+    echo ' <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>Error!</strong> '. $showError.'
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div> ';
+    }
+    ?>
+    <div id="home">
+    <form action="registration_page.php" class="bd" name="myform"  onsubmit="return validateForm();" method="post">
+        <h1>Register</h1>
+        <div class="form">
+            <input type="text" name="drname" autocomplete="off" required />
+            <label for="drname" class="label-name">
+                <span class="content-name">Dr.Name</span>
+            </label>
+        </div>
+        <div class="form">
+            <input type="text" name="designation" autocomplete="off" required />
+            <label for="designation" class="label-name">
+                <span class="content-name">Designation</span>
+            </label>
+        </div>
+        <div class="form">
+            <input type="text" name="Specialization" autocomplete="off" required />
+            <label for="Specialization" class="label-name">
+                <span class="content-name">Specialization</span>
+            </label>
+        </div>
+        <div class="form">
+            <input type="text" name="EmailId" autocomplete="off" required />
+            <label for="EmailId" class="label-name">
+                <span class="content-name">EmailId</span>
+            </label>
+        </div>
+        <div class="form">
+            <input type="text" maxlength="10" name="Cont" autocomplete="off" required />
+            <label for="Cont" class="label-name">
+                <span class="content-name">Contact No.</span>
+            </label>
+        </div>
+        <div class="form">
+            <input type="text" name="Hospitalname" autocomplete="off" required />
+            <label for="Hospitalname" class="label-name">
+                <span class="content-name">Hospital Name</span>
+            </label>
+        </div>
+        <div class="form">
+            <input type="text" maxlength="6" name="pincode" autocomplete="off" required />
+            <label for="pincode" class="label-name">
+                <span class="content-name">Pincode</span>
+            </label>
+        </div>
+        <div class="form">
+            <input type="text" minlength="8" maxlength="20" name="username" autocomplete="off" required />
+            <label for="username" class="label-name">
+                <span class="content-name">Create Username</span>
+            </label>
+        </div>
+        <div class="form">
+            <input type="text" minlength="8" maxlength="16" name="password" autocomplete="off" required />
+            <label for="password" class="label-name">
+                <span class="content-name">Create Password</span>
+            </label>
+        </div>
+        <div class="form">
+            <input type="text" minlength="8" maxlength="16" name="cpassword1" autocomplete="off" required />
+            <label for="cpassword1" class="label-name">
+                <span class="content-name">Confirm Password</span>
+            </label>
+        </div>
+        <div class="form">
+                <button class="btn" name="Submit" id="" value="Validate" onclick="validateform();">Submit</button>
+        </div>
+
+    </form>
+    </div>
+
+    <script>
+            function validateform(){
+        var name=document.myform.drname.value;
+        var phno=document.myform.Cont.value;
+        var pincode=document.myform.pincode.value;
+        if (name==null || name==""){
+        alert("Check your name");
+        return false;
+        }
+        else if(isNaN(phno) || phno.length!=10){
+        alert("Incorrect Phone Number");
+        return false;
+        }
+        else if(isNaN(pincode) || pincode.length!=6){
+        alert("Incorrect Pincode");
+        return false;
+        }
+        // else if{
+        //     ValidateEmail(document.myform.EmailId);
+
+        // }
+        }
+//         function ValidateEmail(inputText)
+// {
+// var mailformat = /^w+([.-]?w+)*@w+([.-]?w+)*(.w{2,3})+$/;
+// if(inputText.value.match(mailformat))
+// {
+// alert("You have entered a valid email address!");    //The pop up alert for a valid email address
+// document.myform.EmailId.focus();
+// return true;
+// }
+// else
+// {
+// alert("You have entered an invalid email address!");    //The pop up alert for an invalid email address
+// document.myform.EmailId.focus();
+// return false;
+// }
+// }
+    </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<?php
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+    include '../partial/_dbcon.php';
+    $name=$_POST['drname'];
+    $dg=$_POST['designation'];
+    $sp=$_POST['Specialization'];
+    $eid=$_POST['EmailId'];
+    $phno=$_POST['Cont'];
+    $Hname=$_POST['Hospitalname'];
+    $pincode=$_POST['pincode'];
+    $uid=$_POST['username'];
+    $password=$_POST['password'];
+    // $sql="INSERT INTO `dg_reg_page`.`drreg` (`uide`,`password`,`drname`, `designation`, `specailized`, `eid`, `cont`, `hname`, `pincode`, `dt`) VALUES ('$uid','$password','$name', '$dg', '$sp', '$eid', '$phno', '$Hname', '$pincode', current_timestamp());";
+    $sql="INSERT INTO `dr_reg_page`.`drreg` (`uide`, `password`, `drname`, `designation`, `specailized`, `eid`, `cont`, `hname`, `pincode`, `dt`) VALUES ('$uid', '$password', '$name', '$dg', '$sp', '$eid', '$phno', '$Hname', '$pincode', current_timestamp());";
+    if($con->query($sql)==true){
+        echo"Successfully inserted";
+    }
+    else{
+        echo "Error: $sql <br> $con->error";
+    }
+    $con->close();
+}
+
+
+
+?>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration page</title>
+    <link rel="stylesheet" href="./regstyle.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="home">
+    <form action="registration_page.php" class="bd" name="myform"  onsubmit="return validateForm();" method="post">
+        <h1>Register</h1>
+        <div class="form">
+            <input type="text" name="drname" autocomplete="off" required />
+            <label for="drname" class="label-name">
+                <span class="content-name">Dr.Name</span>
+            </label>
+        </div>
+        <div class="form">
+            <input type="text" name="designation" autocomplete="off" required />
+            <label for="designation" class="label-name">
+                <span class="content-name">Designation</span>
+            </label>
+        </div>
+        <div class="form">
+            <input type="text" name="Specialization" autocomplete="off" required />
+            <label for="Specialization" class="label-name">
+                <span class="content-name">Specialization</span>
+            </label>
+        </div>
+        <div class="form">
+            <input type="text" name="EmailId" autocomplete="off" required />
+            <label for="EmailId" class="label-name">
+                <span class="content-name">EmailId</span>
+            </label>
+        </div>
+        <div class="form">
+            <input type="text" maxlength="10" name="Cont" autocomplete="off" required />
+            <label for="Cont" class="label-name">
+                <span class="content-name">Contact No.</span>
+            </label>
+        </div>
+        <div class="form">
+            <input type="text" name="Hospitalname" autocomplete="off" required />
+            <label for="Hospitalname" class="label-name">
+                <span class="content-name">Hospital Name</span>
+            </label>
+        </div>
+        <div class="form">
+            <input type="text" maxlength="6" name="pincode" autocomplete="off" required />
+            <label for="pincode" class="label-name">
+                <span class="content-name">Pincode</span>
+            </label>
+        </div>
+        <div class="form">
+            <input type="text" minlength="8" maxlength="20" name="username" autocomplete="off" required />
+            <label for="username" class="label-name">
+                <span class="content-name">Create Username</span>
+            </label>
+        </div>
+        <div class="form">
+            <input type="text" minlength="8" maxlength="16" name="password" autocomplete="off" required />
+            <label for="password" class="label-name">
+                <span class="content-name">Create Password</span>
+            </label>
+        </div>
+        <div class="form">
+                <button class="btn" name="Submit" id="" onclick="validateform();">Submit</button>
+        </div>
+
+    </form>
+    </div>
+
+    <script>
+            function validateform(){
+        var name=document.myform.drname.value;
+        var phno=document.myform.Cont.value;
+        var pincode=document.myform.pincode.value;
+        if (name==null || name==""){
+        alert("Check your name");
+        return false;
+        }
+        else if(isNaN(phno) || phno.length!=10){
+        alert("Incorrect Phone Number");
+        return false;
+        }
+        else if(isNaN(pincode) || pincode.length!=6){
+        alert("Incorrect Pincode");
+        return false;
+        }
+        // else if{
+        //     ValidateEmail(document.myform.EmailId);
+
+        // }
+        }
+//         function ValidateEmail(inputText)
+// {
+// var mailformat = /^w+([.-]?w+)*@w+([.-]?w+)*(.w{2,3})+$/;
+// if(inputText.value.match(mailformat))
+// {
+// alert("You have entered a valid email address!");    //The pop up alert for a valid email address
+// document.myform.EmailId.focus();
+// return true;
+// }
+// else
+// {
+// alert("You have entered an invalid email address!");    //The pop up alert for an invalid email address
+// document.myform.EmailId.focus();
+// return false;
+// }
+// }
+    </script>
+</body>
+</html>

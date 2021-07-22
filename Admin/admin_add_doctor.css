@@ -1,0 +1,197 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@1,300;1,600&display=swap");
+
+@font-face {
+  font-family: "Kaushanscript";
+  src: url("Fonts/Kaushan_Script/KaushanScript-Regular.ttf");
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  list-style: none;
+  box-sizing: border-box;
+  user-select: none;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.6);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+body {
+  overflow-x: hidden;
+  /* background-image: linear-gradient(300deg, #10bbce, #42d7e7); */
+  height: 100%;
+  width: 100%;
+  scroll-behavior: smooth;
+}
+
+nav.navigation {
+  top: 0;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 5% 2fr 2fr 1fr;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+nav.navigation span.logo {
+  font-size: 3vw;
+  grid-column: 2;
+  padding-top: 0vh;
+  font-family: "Kaushanscript";
+  text-decoration: none;
+  color: white;
+  user-select: none;
+}
+
+nav.navigation ul {
+  grid-column: 4;
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  text-decoration: none;
+}
+
+nav.navigation ul li {
+  padding-right: 2vw;
+  padding-top: 0vh;
+}
+
+nav.navigation ul li a {
+  font-size: 1.1vw;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  /* font-family: "Josefin Sans", sans-serif; */
+  color: white;
+  user-select: none;
+}
+
+nav.navigation ul li a::after {
+  content: "";
+  display: block;
+  background: white;
+  width: 0px;
+  height: 2px;
+  transition: all 1s;
+}
+
+nav.navigation ul li a:hover::after {
+  width: 100%;
+  background: #009fdf;
+  transition: all 1s;
+}
+
+main svg.down {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: auto;
+  bottom: 0;
+  z-index: -2;
+}
+
+main div.inner {
+  position: fixed;
+  width: 37%;
+  height: 85%;
+  top: 70%;
+  left: 45%;
+  transform: translate(-45%, -70%);
+  border-radius: 10px;
+  background-color: #009fdf;
+  border: 1px solid black;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+}
+
+main section.form {
+  border: 1.5px solid black;
+  border-radius: 10px;
+  background-color: white;
+  width: 40%;
+  padding: 20px;
+  position: absolute;
+  transition: all 0.5s;
+  top: 65%;
+  left: 50%;
+  transform: translate(-50%, -65%);
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
+}
+
+main section.form form {
+  margin: 2%;
+}
+
+main section.form form input {
+  border: none;
+  border-bottom: 2px solid #009fdf;
+  margin-bottom: 30px;
+  outline: none;
+  width: 60%;
+}
+
+main section.form form label.name,
+main section.form form label.username,
+main section.form form label.pass,
+main section.form form label.email,
+main section.form form label.contact,
+main section.form form label.specialization,
+main section.form form label.designation,
+main section.form form label.exp,
+main section.form form label.age,
+main section.form form label.gender {
+  position: absolute;
+  left: 5%;
+  transition: all 0.5s;
+}
+
+main section.form form input#name:focus ~ label.name,
+main section.form form input#name:valid ~ label.name,
+main section.form form input#username:focus ~ label.username,
+main section.form form input#username:valid ~ label.username,
+main section.form form input#pass:focus ~ label.pass,
+main section.form form input#pass:valid ~ label.pass,
+main section.form form input#email:focus ~ label.email,
+main section.form form input#email:valid ~ label.email,
+main section.form form input#contact:focus ~ label.contact,
+main section.form form input#contact:valid ~ label.contact,
+main section.form form input#specialization:focus ~ label.specialization,
+main section.form form input#specialization:valid ~ label.specialization,
+main section.form form input#designation:focus ~ label.designation,
+main section.form form input#designation:valid ~ label.designation,
+main section.form form input#exp:focus ~ label.exp,
+main section.form form input#exp:valid ~ label.exp,
+main section.form form input#age:focus ~ label.age,
+main section.form form input#age:valid ~ label.age,
+main section.form form input#gender:focus ~ label.gender,
+main section.form form input#gender:valid ~ label.gender {
+  transform: translateY(-100%);
+  font-size: 16px;
+  color: rgb(65, 65, 228);
+  transition: all 0.5s;
+}
+
+main section.form form button {
+  padding: 0.5rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 10px;
+  font-family: "Kaushanscript";
+  background-color: #009fdf;
+  color: white;
+  border: 1px solid black;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
+}
+
+main section.form form button:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+  transform: scale(1.05, 1.05);
+  cursor: pointer;
+}
